@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/chouchua/utility/issues"
   },
-  "homepage": "https://github.com/chouchua/utility#readme"
+  "homepage": "https://github.com/chouchua/utility#readme",
+  "dependencies": {
+    "mkdirp": "^0.5.1"
+  }
 }
