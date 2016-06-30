@@ -36,6 +36,10 @@ function utils(){
             console.log('folder does not exist');
         }
     }
+    this.logger= function(content){
+        console.log(JSON.stringify(content));
+        fs.writeFileSync('./send/log.txt',JSON.stringify(content));
+    }
 }
 
 function ensureDirExists(path){
