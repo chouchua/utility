@@ -13,8 +13,11 @@ function utils(){
         }
         //ensureDirExists(content);
         createFolders(path);
-        var json = JSON.stringify(content);
-        fs.writeFileSync(path,json);
+        if(typeof content === ''){
+            content = JSON.stringify(content,null);
+        }
+        
+        fs.writeFileSync(path,content);
     }
     /**
      * 
