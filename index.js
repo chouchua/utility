@@ -13,12 +13,13 @@ function utils(){
         }
         //ensureDirExists(content);
         createFolders(path);
-        if(typeof content === ''){
+        if(typeof content === 'object'){
             content = JSON.stringify(content,null);
         }
         
         fs.writeFileSync(path,content);
     }
+
     /**
      * 
      */
@@ -26,6 +27,7 @@ function utils(){
         console.log(JSON.stringify(content));
         this.export('./send/log.txt', content);
     }
+
     /**
      * 
      */
@@ -45,6 +47,9 @@ function utils(){
     }
 }
 
+/**
+ * 
+ */
 function ensureDirExists(path){
     try{
         var obj = fs.statSync(path);
