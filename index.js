@@ -1,7 +1,7 @@
-//var path = require
 var mkdir = require('mkdirp');
 var path = require('path');
 var fs = require('fs');
+
 function utils(){
     /**
      * print object
