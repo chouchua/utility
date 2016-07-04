@@ -4,24 +4,23 @@ var fs = require('fs');
 
 function utils(){
     /**
-     * print object
+     * Write information. If content is an object, it will be processed accordingly.
      */
     this.export = function (path,content){
         if (typeof path !== 'string'){
             console.log('parameter path must be a string');
             return;
         }
-        //ensureDirExists(content);
         createFolders(path);
         if(typeof content === 'object'){
             content = JSON.stringify(content,null);
         }
-        
+        //
         fs.writeFileSync(path,content);
     }
 
     /**
-     * 
+     * Log information and write it to './send/log.txt'
      */
     this.logger = function(content){
         console.log(JSON.stringify(content));
@@ -29,16 +28,23 @@ function utils(){
     }
 
     /**
-     * 
+     * Read the content specified by the path
+     * @param path the path to the file
+     * @param opt create folder if does not exist.
      */
-    this.readFolder = function(path){
+    this.readFolder = function(path,opt){
+        
         if(ensureDirExists(path)){
             var files = fs.readdirSync(path);
-            console.log(files);
+            console.log(String.raw `Folder exists and its contents are: ${files} exist`);
+            return files;
         }
-        //create the folders.
+        
         else{
-            console.log('folder does not exist');
+            if(opt!=null){
+                console.log('option specified')
+            }
+            console.log('Folder does not exist ...');
         }
     }
     this.logger= function(content){
@@ -48,21 +54,31 @@ function utils(){
 }
 
 /**
- * 
+ * Helper: Given a path to folder, check exists or not.
  */
 function ensureDirExists(path){
     try{
         var obj = fs.statSync(path);
-        return true;
+        if(obj.isDirectory()){
+            return true;    
+        }
+        else{
+            console.log('Target exists, but it is not a folder:');  
+            return false;
+        }
+        
     }
     catch(e){
         return false;
     }
 }
 
+/**
+ * Create folders that the path specifies. Eg. The path of '/send/it/to/here' will create ['send','send/it','send/it/to'] folders. 
+ */
 function createFolders(location){
-    var temp = path.dirname(location);
-    mkdir.sync(temp);
+    var folderPath = path.dirname(location);
+    mkdir.sync(folderPath);
 }
 
 module.exports =  utils;
