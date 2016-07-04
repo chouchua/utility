@@ -26,6 +26,21 @@ function utils(){
         console.log(JSON.stringify(content));
         this.export('./send/log.txt', content);
     }
+    
+    /**
+     * 
+     */
+    this.readFile = function(path,opt){
+        console.log('reading file contents');
+        try{
+            return fs.readFileSync(path);
+        }
+        catch(e){
+            console.log('File does not exist');
+            return;
+        }
+        
+    }
 
     /**
      * Read the content specified by the path
@@ -42,9 +57,10 @@ function utils(){
         
         else{
             if(opt!=null){
-                console.log('option specified')
+                console.log('option specified');
             }
             console.log('Folder does not exist ...');
+            return null;
         }
     }
     this.logger= function(content){
@@ -81,4 +97,4 @@ function createFolders(location){
     mkdir.sync(folderPath);
 }
 
-module.exports =  utils;
+module.exports =  new utils();
