@@ -1,5 +1,4 @@
 var utility = require('./index');
-
 //create few files...
 utility.export('./test.txt','content...');
 utility.export('./send/test1.txt','content...');
@@ -14,20 +13,22 @@ var path = require('path');
 //read the files created.
 var result = utility.readFolder("./package.json");
 if (result){
-    console.log(result);
+    utility.logger(result);
 }
 var result2 = utility.readFolder("./send");
 if (result2){
-    console.log(result2);
+    utility.logger(result2);
 }
 
 var result3 = utility.readFile("test1.txt");
 if(result3){
-    console.log('undefinedasdf');
+    utility.logger('undefinedasdf');
 }
 
 var result4 = utility.readFile("send/test1.txt");
 if(result4){
-    console.log(result4);
+    utility.logger(result4);
 }
+
+var test_lifecycle = require('./test_lifecycle');
 process.exit();

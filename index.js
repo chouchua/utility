@@ -3,10 +3,14 @@ var path = require('path');
 var fs = require('fs');
 
 function utils(){
+    
     /**
      * Write information. If content is an object, it will be processed accordingly.
+     * @param
+     * @param content
+     * @param opt true if you want to append to the file
      */
-    this.export = function (path,content){
+    this.export = function (path,content,opt){
         if (typeof path !== 'string'){
             console.log('parameter path must be a string');
             return;
@@ -15,16 +19,34 @@ function utils(){
         if(typeof content === 'object'){
             content = JSON.stringify(content,null);
         }
-        //
-        fs.writeFileSync(path,content);
+        //true if you want to append to target file.
+        if(opt){
+            fs.appendFileSync(path,content);
+        }else{
+            fs.writeFileSync(path,content);
+        }
     }
 
     /**
-     * Log information and write it to './send/log.txt'
+     * Log information and write it to './send/log.txt' or otherwise specified
+     * @param content
+     * @param location optional parameter, overrides the default destination
      */
-    this.logger = function(content){
-        console.log(JSON.stringify(content));
-        this.export('./send/log.txt', content);
+    this.logger = function(content,location){
+        var location = location || './send/log.txt';
+        if(typeof content === 'object'){
+            console.log(JSON.stringify(content));
+        }
+        else{
+            console.log(content);
+        }        
+        if(process.logger){
+            this.export(location, content, true);
+        }
+        else{
+            this.export(location, content);
+            process.logger = true;
+        }
     }
     
     /**
@@ -39,7 +61,6 @@ function utils(){
             console.log('File does not exist');
             return;
         }
-        
     }
 
     /**
@@ -63,14 +84,10 @@ function utils(){
             return null;
         }
     }
-    this.logger= function(content){
-        console.log(JSON.stringify(content));
-        fs.writeFileSync('./send/log.txt',JSON.stringify(content));
-    }
 }
 
 /**
- * Helper: Given a path to folder, check exists or not.
+ * Helper: Given a path to folder, check whether it exists or not.
  */
 function ensureDirExists(path){
     try{
@@ -82,7 +99,6 @@ function ensureDirExists(path){
             console.log('Target exists, but it is not a folder:');  
             return false;
         }
-        
     }
     catch(e){
         return false;
