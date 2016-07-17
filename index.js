@@ -53,7 +53,7 @@ function utils(){
      * 
      */
     this.readFile = function(path,opt){
-        console.log('reading file contents');
+        console.log('Reading file contents...');
         try{
             return fs.readFileSync(path);
         }
@@ -109,7 +109,7 @@ function ensureDirExists(path){
  * Create folders that the path specifies. Eg. The path of '/send/it/to/here' will create ['send','send/it','send/it/to'] folders. 
  */
 function createFolders(location){
-    var folderPath = path.dirname(location);
+    var folderPath = path.dirname("./logs/log.log");
     mkdir.sync(folderPath);
 }
 

@@ -13,15 +13,18 @@ var path = require('path');
 //read the files created.
 var result = utility.readFolder("./package.json");
 if (result){
+    //Target exists, but is not a folder.
     utility.logger(result);
 }
 var result2 = utility.readFolder("./send");
 if (result2){
+    //Folder exists, 
     utility.logger(result2);
 }
 
 var result3 = utility.readFile("test1.txt");
 if(result3){
+    //
     utility.logger('undefinedasdf');
 }
 
