@@ -1,11 +1,11 @@
 var utility = require('./index');
 //create few files...
-utility.export('./test.txt','content...');
-utility.export('./send/test1.txt','content...');
-utility.export('./send/test2.txt','content...');
-var obj = {jimmy:"chou"};
-utility.export('./send/test3.txt',obj);
-utility.export('./send/test4.txt','content...');
+utility.export('./test/test.txt', 'content...');
+utility.export('./test/test1.txt', 'content...');
+utility.export('./test/test2.txt', 'content...');
+var obj = {jimmy: "chou"};
+utility.export('./test/test3.txt', obj);
+utility.export('./test/test4.txt', 'content...');
 
 var fs = require('fs');
 var path = require('path');
@@ -16,19 +16,22 @@ if (result){
     //Target exists, but is not a folder.
     utility.logger(result);
 }
-var result2 = utility.readFolder("./send");
+utility.debug("ah");
+
+//function: readFolder
+var result2 = utility.readFolder("./test");
 if (result2){
     //Folder exists, 
     utility.logger(result2);
 }
 
-var result3 = utility.readFile("test1.txt");
+//function: readFile
+var result3 = utility.readFile("test/test1.txt");
 if(result3){
-    //
-    utility.logger('undefinedasdf');
+    utility.logger(result3);
 }
 
-var result4 = utility.readFile("send/test1.txt");
+var result4 = utility.readFile("test/test1.txt");
 if(result4){
     utility.logger(result4);
 }

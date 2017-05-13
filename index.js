@@ -70,9 +70,9 @@ function utils(){
      */
     this.readFolder = function(path,opt){
         
-        if(ensureDirExists(path)){
+        if(this.ensureDirExists(path)){
             var files = fs.readdirSync(path);
-            console.log(String.raw `Folder exists and its contents are: ${files} exist`);
+            console.log(String.raw `Folder exists and its contents are: ${files}`);
             return files;
         }
         
@@ -84,24 +84,35 @@ function utils(){
             return null;
         }
     }
-}
 
-/**
- * Helper: Given a path to folder, check whether it exists or not.
- */
-function ensureDirExists(path){
-    try{
-        var obj = fs.statSync(path);
-        if(obj.isDirectory()){
-            return true;    
+    /**
+     * Given a path to folder, check whether it exists or not.
+     */
+    this.ensureDirExists = function(path) {
+        try{
+            var obj = fs.statSync(path);
+            if(obj.isDirectory()) {
+                return true;    
+            }
+            else {
+                console.log('Target exists, but it is not a folder:');  
+                return false;
+            }
         }
-        else{
-            console.log('Target exists, but it is not a folder:');  
+        catch(e) {
             return false;
         }
     }
-    catch(e){
-        return false;
+
+    this.debug = function log(msg, time){
+        let logLineDetails = ((new Error().stack).split("at ")[3]).trim() + '\n   ';
+        if(time){
+            console.log('DEBUG', new Date().toUTCString(), logLineDetails, msg);
+        }
+        
+        else{
+            console.log('DEBUG', logLineDetails, msg);
+        }
     }
 }
 
@@ -109,7 +120,8 @@ function ensureDirExists(path){
  * Create folders that the path specifies. Eg. The path of '/send/it/to/here' will create ['send','send/it','send/it/to'] folders. 
  */
 function createFolders(location){
-    var folderPath = path.dirname("./logs/log.log");
+    var folderPath = path.dirname(location);
+    // var folderPath = path.dirname("./logs/log.log");
     mkdir.sync(folderPath);
 }
 
