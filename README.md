@@ -4,7 +4,7 @@
 npm test: run test.js to try out functionality.
 
 ##Usage:
-Require the module for an instance of fileUtility
+Require the module for an instance of utility
 ```html
 var utility = require('./utilityFileSystem');
 //create few files...
