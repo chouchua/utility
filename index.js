@@ -114,6 +114,14 @@ function utils(){
             console.log('DEBUG', logLineDetails, msg);
         }
     }
+    this.includeJS = function(jsFile) {
+        //vanilla js, inject js into page
+        var head = document.head;
+        var script=document.createElement('script');
+        script.type='text/javascript';
+        script.src=jsFile;
+        document.head.appendChild(script);
+    }
 }
 
 /**
