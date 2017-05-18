@@ -15,7 +15,7 @@ function utils(){
             console.log('parameter path must be a string');
             return;
         }
-        createFolders(path);
+        createFolder(path);
         if(typeof content === 'object'){
             content = JSON.stringify(content,null);
         }
@@ -122,15 +122,27 @@ function utils(){
         script.src=jsFile;
         document.head.appendChild(script);
     }
+    this.typeof = function(target) {
+        console.log(Object.prototype.toString.call(target));
+    }
+    this.createFolder = createFolder;
 }
 
 /**
  * Create folders that the path specifies. Eg. The path of '/send/it/to/here' will create ['send','send/it','send/it/to'] folders. 
  */
-function createFolders(location){
-    var folderPath = path.dirname(location);
-    // var folderPath = path.dirname("./logs/log.log");
-    mkdir.sync(folderPath);
+function createFolder(location){
+    var containsSlash = /\//;
+    
+    if(containsSlash.test(location)){
+        var folderPath = path.dirname(location);
+        // var folderPath = path.dirname("./logs/log.log");
+        mkdir.sync(folderPath);
+    }
+    else{
+        mkdir.sync(location);
+    }
+    
 }
 
 module.exports =  new utils();
