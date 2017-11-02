@@ -1,20 +1,32 @@
 #File utility for node programs
 
 ##Test:
-npm test: run test.js to try out functionality.
+`npm test` to try out functionality.
 
 ##Usage:
-Require the module for an instance of utility
-```html
+Require the module for an instance of utilityFileSystem
+example 1: write content to file
+```js
 var utility = require('./utilityFileSystem');
 //create few files...
 utility.export('./test.txt','content...');
 utility.export('./send/test1.txt','content...');
+```
+output:
+```js
 
+
+```
+
+example 2: read folder
+```js
 //read the files created.
 var result = utility.readFolder("./package.json");
 var result2 = utility.readFile("test1.txt");
 ```
+output:
+##Methods:
+
 ##How to install:
 npm install utilityFileSystem
 

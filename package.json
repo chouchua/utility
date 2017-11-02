@@ -3,6 +3,10 @@
   "version": "1.0.4",
   "description": "",
   "main": "index.js",
+  "keywords": [
+    "mkdir",
+    "directory"
+  ],
   "scripts": {
     "test": "node test.js"
   },

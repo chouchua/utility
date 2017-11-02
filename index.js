@@ -6,7 +6,6 @@ function utils(){
     
     /**
      * Write information. If content is an object, it will be processed accordingly.
-     * @param
      * @param content
      * @param opt true if you want to append to the file
      */
@@ -32,7 +31,7 @@ function utils(){
      * @param content
      * @param location optional parameter, overrides the default destination
      */
-    this.logger = function(content,location){
+    this.logger = function(content, location){
         var location = location || './send/log.txt';
         if(typeof content === 'object'){
             console.log(JSON.stringify(content));
@@ -50,9 +49,10 @@ function utils(){
     }
     
     /**
-     * 
+     * @param path
+     * @param opt
      */
-    this.readFile = function(path,opt){
+    this.readFile = function(path, opt){
         console.log('Reading file contents...');
         try{
             return fs.readFileSync(path);
@@ -66,9 +66,9 @@ function utils(){
     /**
      * Read the content specified by the path
      * @param path the path to the file
-     * @param opt create folder if does not exist.
+     * @param opt flag, true, creates folder if does not exist.
      */
-    this.readFolder = function(path,opt){
+    this.readFolder = function(path, opt){
         
         if(this.ensureDirExists(path)){
             var files = fs.readdirSync(path);
@@ -104,6 +104,9 @@ function utils(){
         }
     }
 
+    /**
+     * 
+     */
     this.debug = function log(msg, time){
         let logLineDetails = ((new Error().stack).split("at ")[3]).trim() + '\n   ';
         if(time){
@@ -114,6 +117,7 @@ function utils(){
             console.log('DEBUG', logLineDetails, msg);
         }
     }
+
     this.includeJS = function(jsFile) {
         //vanilla js, inject js into page
         var head = document.head;
@@ -122,14 +126,21 @@ function utils(){
         script.src=jsFile;
         document.head.appendChild(script);
     }
+
+    /**
+     * logs the type of object
+     * @param target any type of object
+     */
     this.typeof = function(target) {
         console.log(Object.prototype.toString.call(target));
     }
+
     this.createFolder = createFolder;
 }
 
 /**
- * Create folders that the path specifies. Eg. The path of '/send/it/to/here' will create ['send','send/it','send/it/to'] folders. 
+ * Create folders that the path specifies. The path of '/send/it/to/here' will create ['send','send/it','send/it/to'] folders. 
+ * @param location directory path
  */
 function createFolder(location){
     var containsSlash = /\//;
