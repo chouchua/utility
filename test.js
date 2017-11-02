@@ -11,9 +11,19 @@ utility.export('./test/test4.txt', 'content...');
 
 var fs = require('fs');
 var path = require('path');
-// console.log(fs.statSync("send"));
+var result = null;
+
+res = utility.createFolder('./testfolder/testfolder');
+if(res) {
+    utility.logger(res);
+}
+
+result = utility.createFolder('./testfolder');
+if(result) {
+    utility.logger(result);
+}
 //read the files created.
-var result = utility.readFolder("./package.json");
+result = utility.readFolder("./package.json");
 if (result){
     //Target exists, but is not a folder.
     utility.logger(result);
@@ -21,21 +31,21 @@ if (result){
 utility.debug("ah");
 
 //function: readFolder
-var result2 = utility.readFolder("./test");
-if (result2){
+var result = utility.readFolder("./test");
+if (result){
     //Folder exists, 
-    utility.logger(result2);
+    utility.logger(result);
 }
 
 //function: readFile
-var result3 = utility.readFile("test/test1.txt");
-if(result3){
-    utility.logger(result3);
+result = utility.readFile("test/test1.txt");
+if(result){
+    utility.logger(result);
 }
 
-var result4 = utility.readFile("test/test1.txt");
-if(result4){
-    utility.logger(result4);
+result = utility.readFile("test/test1.txt");
+if(result){
+    utility.logger(result);
 }
 
 var test_lifecycle = require('./test_lifecycle');

@@ -5,11 +5,11 @@ var fs = require('fs');
 function utils(){
     
     /**
-     * Write information. If content is an object, it will be processed accordingly.
+     * Write information. If content is an object, it will be stringified.
      * @param content
      * @param opt true if you want to append to the file
      */
-    this.export = function (path,content,opt){
+    this.export = function (path, content, opt){
         if (typeof path !== 'string'){
             console.log('parameter path must be a string');
             return;
@@ -20,9 +20,9 @@ function utils(){
         }
         //true if you want to append to target file.
         if(opt){
-            fs.appendFileSync(path,content);
+            fs.appendFileSync(path, content);
         }else{
-            fs.writeFileSync(path,content);
+            fs.writeFileSync(path, content);
         }
     }
 
@@ -39,12 +39,12 @@ function utils(){
         else{
             console.log(content);
         }        
-        if(process.logger){
-            this.export(location, content, true);
+        if(process.env.logger){//append to log file
+            this.export(location, content + "\n", true);
         }
         else{
-            this.export(location, content);
-            process.logger = true;
+            this.export(location, content + "\n");
+            process.env.logger = true;
         }
     }
     
@@ -105,7 +105,8 @@ function utils(){
     }
 
     /**
-     * 
+     * @param msg msg
+     * @param time optional
      */
     this.debug = function log(msg, time){
         let logLineDetails = ((new Error().stack).split("at ")[3]).trim() + '\n   ';
@@ -144,16 +145,17 @@ function utils(){
  */
 function createFolder(location){
     var containsSlash = /\//;
-    
     if(containsSlash.test(location)){
         var folderPath = path.dirname(location);
-        // var folderPath = path.dirname("./logs/log.log");
+        if(folderPath == '.') {
+            folderPath = location;
+        }
         mkdir.sync(folderPath);
+        return true;
     }
     else{
         mkdir.sync(location);
     }
-    
 }
 
 module.exports =  new utils();
