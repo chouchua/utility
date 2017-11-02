@@ -1,6 +1,7 @@
 var utility = require('./index');
-utility.createFolder('newfolder');
+utility.logger('loggggg');
 //create few files...
+utility.export('./test.txt', 'content...');
 utility.export('./test/test.txt', 'content...');
 utility.export('./test/test1.txt', 'content...');
 utility.export('./test/test2.txt', 'content...');

@@ -32,7 +32,10 @@ function utils(){
      * @param location optional parameter, overrides the default destination
      */
     this.logger = function(content, location){
-        var location = location || './send/log.txt';
+        var fileName = new Date().toISOString();
+        var rand = "./logs/" + fileName + ".txt";
+        location = location || rand;
+         
         if(typeof content === 'object'){
             console.log(JSON.stringify(content));
         }
@@ -141,15 +144,13 @@ function utils(){
 
 /**
  * Create folders that the path specifies. The path of '/send/it/to/here' will create ['send','send/it','send/it/to'] folders. 
+ * Requirement, provide relative path.
  * @param location directory path
  */
 function createFolder(location){
     var containsSlash = /\//;
     if(containsSlash.test(location)){
         var folderPath = path.dirname(location);
-        if(folderPath == '.') {
-            folderPath = location;
-        }
         mkdir.sync(folderPath);
         return true;
     }
