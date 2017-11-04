@@ -20,7 +20,6 @@ Reading file contents from test/test1.txt
 
 Example 2: read folder
 ```js
-//read the files created.
 utility.readFolder("./package.json");
 utility.readFolder("./test");
 ```
