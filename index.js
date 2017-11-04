@@ -75,17 +75,14 @@ function utils(){
         
         if(this.ensureDirExists(path)){
             var files = fs.readdirSync(path);
-            console.log(String.raw `Folder exists and its contents are: ${files}`);
+            console.log(`${path} Folder exists and its contents are: ${files}`);
             return files;
         }
         
-        else{
-            if(opt!=null){
-                //option specified
-            }
-            console.log("{" + path + "}" + 'Folder does not exist ...');
-            return null;
+        if(opt!=null){
+            //option specified
         }
+        return null;
     }
 
     /**
@@ -98,11 +95,12 @@ function utils(){
                 return true;    
             }
             else {
-                console.log('Target exists, but it is not a folder:');  
+                console.log(`${path} Target exists, but it is not a folder...`);  
                 return false;
             }
         }
         catch(e) {
+            console.log(`{ ${path} path does not exist ...`)
             return false;
         }
     }
