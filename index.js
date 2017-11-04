@@ -81,9 +81,9 @@ function utils(){
         
         else{
             if(opt!=null){
-                console.log('option specified');
+                //option specified
             }
-            console.log('Folder does not exist ...');
+            console.log("{" + path + "}" + 'Folder does not exist ...');
             return null;
         }
     }

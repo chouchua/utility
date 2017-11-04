@@ -5,7 +5,7 @@
 
 ##Usage:
 Require the module for an instance of utilityFileSystem
-example 1: write content to file
+Example 1: write content to file
 ```js
 var utility = require('./utilityFileSystem');
 //create few files...
@@ -18,13 +18,16 @@ output:
 
 ```
 
-example 2: read folder
+Example 2: read folder
 ```js
 //read the files created.
 var result = utility.readFolder("./package.json");
 var result2 = utility.readFile("test1.txt");
 ```
 output:
+```JS
+
+```
 ##Methods:
 
 ##How to install:
