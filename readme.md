@@ -10,24 +10,27 @@ Example 1: write content to file
 var utility = require('./utilityFileSystem');
 //create few files...
 utility.export('./test.txt','content...');
-utility.export('./send/test1.txt','content...');
+utility.readFile("./test.txt");
 ```
 output:
 ```js
-
-
+Created file: ./test.txt
+Reading file contents from test/test1.txt
 ```
 
 Example 2: read folder
 ```js
 //read the files created.
-var result = utility.readFolder("./package.json");
-var result2 = utility.readFile("test1.txt");
+utility.readFolder("./package.json");
+utility.readFolder("./test");
 ```
 output:
 ```JS
-
+./package.json Target exists, but it is not a folder...use utility.readFile() instead.
+./test Folder exists and its contents are: test.txt,test1.txt,test2.txt,test3.txt,test4.txt
 ```
+
+Example 3: log files
 ##Methods:
 
 ##How to install:

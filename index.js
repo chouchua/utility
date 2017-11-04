@@ -20,9 +20,22 @@ function utils(){
         }
         //true if you want to append to target file.
         if(opt){
-            fs.appendFileSync(path, content);
+            try {
+                fs.appendFileSync(path, content);
+            } catch(e) {
+                console.log(`unable to append to: ${path}`);
+                console.log(e);
+            }
+            
         }else{
-            fs.writeFileSync(path, content);
+            try {
+                fs.writeFileSync(path, content);
+                console.log(`Created file: ${path}`);
+            } catch (e) {
+                console.log(`unable to write to: ${path}`);
+                console.log(e);
+            }
+            
         }
     }
 
@@ -56,7 +69,7 @@ function utils(){
      * @param opt
      */
     this.readFile = function(path, opt){
-        console.log('Reading file contents...');
+        console.log(`Reading file contents from ${path}`);
         try{
             return fs.readFileSync(path);
         }
@@ -95,7 +108,7 @@ function utils(){
                 return true;    
             }
             else {
-                console.log(`${path} Target exists, but it is not a folder...`);  
+                console.log(`${path} Target exists, but it is not a folder...use utility.readFile() instead.`);  
                 return false;
             }
         }

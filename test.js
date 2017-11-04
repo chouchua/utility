@@ -44,10 +44,5 @@ if(result){
     utility.logger(result);
 }
 
-result = utility.readFile("test/test1.txt");
-if(result){
-    utility.logger(result);
-}
-
 var test_lifecycle = require('./test_lifecycle');
 process.exit();
