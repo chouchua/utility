@@ -1,4 +1,5 @@
 # File utility for node programs
+Utility functions for file system, debugging, logging your Node.js application.
 
 ## Test:
 `npm test` to try out functionality.
