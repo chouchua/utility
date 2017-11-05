@@ -2,32 +2,31 @@ var mkdir = require('mkdirp');
 var path = require('path');
 var fs = require('fs');
 
-function utils(){
+function utils() {
     
     /**
      * Write information. If content is an object, it will be stringified.
      * @param content
      * @param opt true if you want to append to the file
      */
-    this.export = function (path, content, opt){
-        if (typeof path !== 'string'){
+    this.export = function (path, content, opt) {
+        if (typeof path !== 'string') {
             console.log('parameter path must be a string');
             return;
         }
         createFolder(path);
-        if(typeof content === 'object'){
+        if(typeof content === 'object') {
             content = JSON.stringify(content,null);
         }
         //true if you want to append to target file.
-        if(opt){
+        if(opt) {
             try {
                 fs.appendFileSync(path, content);
             } catch(e) {
                 console.log(`unable to append to: ${path}`);
                 console.log(e);
             }
-            
-        }else{
+        } else {
             try {
                 fs.writeFileSync(path, content);
                 console.log(`Created file: ${path}`);
@@ -44,18 +43,20 @@ function utils(){
      * @param content
      * @param location optional parameter, overrides the default destination
      */
-    this.logger = function(content, location){
+    this.logger = function(content, location) {
         var fileName = new Date().toISOString();
         var rand = "./logs/" + fileName + ".txt";
         location = location || rand;
          
-        if(typeof content === 'object'){
-            console.log(JSON.stringify(content));
+        if(typeof content === 'object') {
+            var parsed = JSON.stringify(content);
+            console.log(parsed);
+            content = parsed;
         }
         else{
             console.log(content);
         }        
-        if(process.env.logger){//append to log file
+        if(process.env.logger) {//append to log file
             this.export(location, content + "\n", true);
         }
         else{
@@ -68,12 +69,12 @@ function utils(){
      * @param path
      * @param opt
      */
-    this.readFile = function(path, opt){
+    this.readFile = function(path, opt) {
         console.log(`Reading file contents from ${path}`);
-        try{
+        try {
             return fs.readFileSync(path);
         }
-        catch(e){
+        catch(e) {
             console.log('File does not exist');
             return;
         }
@@ -84,15 +85,14 @@ function utils(){
      * @param path the path to the file
      * @param opt flag, true, creates folder if does not exist.
      */
-    this.readFolder = function(path, opt){
-        
-        if(this.ensureDirExists(path)){
+    this.readFolder = function(path, opt) {
+        if(this.ensureDirExists(path)) {
             var files = fs.readdirSync(path);
             console.log(`${path} Folder exists and its contents are: ${files}`);
             return files;
         }
         
-        if(opt!=null){
+        if(opt!=null) {
             //option specified
         }
         return null;
@@ -113,7 +113,7 @@ function utils(){
             }
         }
         catch(e) {
-            console.log(`{ ${path} path does not exist ...`)
+            console.log(`{${path} path does not exist ...`)
             return false;
         }
     }
@@ -122,7 +122,7 @@ function utils(){
      * @param msg msg
      * @param time optional
      */
-    this.debug = function log(msg, time){
+    this.debug = function log(msg, time) {
         let logLineDetails = ((new Error().stack).split("at ")[3]).trim() + '\n   ';
         if(time){
             console.log('DEBUG', new Date().toUTCString(), logLineDetails, msg);
@@ -136,9 +136,9 @@ function utils(){
     this.includeJS = function(jsFile) {
         //vanilla js, inject js into page
         var head = document.head;
-        var script=document.createElement('script');
-        script.type='text/javascript';
-        script.src=jsFile;
+        var script = document.createElement('script');
+        script.type = 'text/javascript';
+        script.src = jsFile;
         document.head.appendChild(script);
     }
 
@@ -158,16 +158,16 @@ function utils(){
  * Requirement, provide relative path.
  * @param location directory path
  */
-function createFolder(location){
+function createFolder(location) {
     var containsSlash = /\//;
-    if(containsSlash.test(location)){
+    if(containsSlash.test(location)) {
         var folderPath = path.dirname(location);
         mkdir.sync(folderPath);
         return true;
     }
-    else{
+    else {
         mkdir.sync(location);
     }
 }
 
-module.exports =  new utils();
+module.exports = new utils();
