@@ -2,6 +2,9 @@
 
 Utility functions for file system, debugging, logging your Node.js application.
 
+[![npm version][npm-image]][npm-url]
+[![npm downloads][downloads-image]][npm-url]
+
 ## Test
 
 `npm test` to try out functionality.
@@ -63,10 +66,14 @@ Output:
 
 ## How to install
 
-```sh
+```bash
 npm install utilityFileSystem
 ```
 
 ## Things to note
 
 The logging capability is aware of the process running. For example, if there is an existing logging file, any new instance of fileUtility will append to the existing.
+
+[npm-url]: https://www.npmjs.com/package/utilityFileSystem
+[npm-image]: https://img.shields.io/npm/v/utilityFileSystem.svg
+[downloads-image]: https://img.shields.io/npm/dt/utilityFileSystem.svg
