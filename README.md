@@ -9,6 +9,7 @@ Utility functions for file system, debugging, logging your Node.js application.
 
 First ensure that you have Node.js installed and then run the following:
 
+Note: I would love to hear from the people downloading this package about their reasons and what improvements they would like to see. Feel free to contact me at chuankengchou@gmail.com
 ```bash
 npm install utilityFileSystem
 ```
@@ -65,7 +66,15 @@ Output:
 ### Example 4: Log files
 
 ```js
-<placeholder>
+var obj = {jimmy: "chou"};
+utility.logger(obj);
+```
+
+Output:
+
+```js
+{"jimmy":"chou"}
+Created file: ./logs/2017-11-06T02:00:29.297Z.txt
 ```
 
 ## Tests

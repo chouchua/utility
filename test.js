@@ -6,6 +6,8 @@ utility.export('./test/test.txt', 'content...');
 utility.export('./test/test1.txt', 'content...');
 utility.export('./test/test2.txt', 'content...');
 var obj = {jimmy: "chou"};
+utility.logger(obj);
+utility.logger(obj);
 utility.typeof(obj);
 utility.export('./test/test3.txt', obj);
 utility.export('./test/test4.txt', 'content...');

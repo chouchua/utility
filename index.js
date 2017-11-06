@@ -1,7 +1,7 @@
 var mkdir = require('mkdirp');
 var path = require('path');
 var fs = require('fs');
-
+var logpath = null;
 function utils() {
     
     /**
@@ -22,6 +22,7 @@ function utils() {
         if(opt) {
             try {
                 fs.appendFileSync(path, content);
+                console.log(`Created file: ${path}`);
             } catch(e) {
                 console.log(`unable to append to: ${path}`);
                 console.log(e);
@@ -44,6 +45,9 @@ function utils() {
      * @param location optional parameter, overrides the default destination
      */
     this.logger = function(content, location) {
+        if(process.env.logger) {
+
+        }
         var fileName = new Date().toISOString();
         var rand = "./logs/" + fileName + ".txt";
         location = location || rand;
@@ -57,10 +61,11 @@ function utils() {
             console.log(content);
         }        
         if(process.env.logger) {//append to log file
-            this.export(location, content + "\n", true);
+            this.export(logpath, content + "\n", true);
         }
         else{
             this.export(location, content + "\n");
+            logpath = location;
             process.env.logger = true;
         }
     }
