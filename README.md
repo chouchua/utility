@@ -9,10 +9,11 @@ Utility functions for file system, debugging, logging your Node.js application.
 
 First ensure that you have Node.js installed and then run the following:
 
-Note: I would love to hear from the people downloading this package about their reasons and what improvements they would like to see. Feel free to contact me at chuankengchou@gmail.com
 ```bash
 npm install utilityFileSystem
 ```
+
+Note: I would love to hear from the people downloading this package about their reasons and what improvements they would like to see. Feel free to contact me at chuankengchou@gmail.com
 
 ## Usage
 
