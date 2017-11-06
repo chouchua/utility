@@ -5,69 +5,76 @@ Utility functions for file system, debugging, logging your Node.js application.
 [![npm version][npm-image]][npm-url]
 [![npm downloads][downloads-image]][npm-url]
 
-## Test
+## Installation
 
-`npm test` to try out functionality.
+First ensure that you have Node.js installed and then run the following:
+
+```bash
+npm install utilityFileSystem
+```
 
 ## Usage
 
 Require the module for an instance of `utilityFileSystem`
 
-### Example 1: Write content to a file
+### Example 1: Write some content to a file
 
 ```js
 var utility = require('./utilityFileSystem');
 
 //create few files...
-utility.export('./test.txt','content...');
+utility.export('./sample.txt','content...');
 ```
 
 Output:
 
-```js
-Created file: ./test.txt
+```bash
+Created file: ./sample.txt
 ```
 
-### Example 2: Read the content of a file
+### Example 2: Read the contents of a file
 
 ```js
 var utility = require('./utilityFileSystem');
 
-utility.readFile("./test.txt");
+utility.readFile("./sample.txt");
 ```
 
 Output:
 
-```js
-Reading file contents from test/test1.txt
+```bash
+Reading file contents from ./sample.txt
 ```
 
 ### Example 3: Read the contents of a folder
 
 ```js
+var utility = require('./utilityFileSystem');
+
 utility.readFolder("./package.json");
-utility.readFolder("./test");
+utility.readFolder("./sample");
 ```
 
 Output:
 
 ```js
 ./package.json Target exists, but it is not a folder...use utility.readFile() instead.
-./test Folder exists and its contents are: test.txt,test1.txt,test2.txt,test3.txt,test4.txt
+./sample Folder exists and its contents are: test.txt,test1.txt,test2.txt,test3.txt,test4.txt
 ```
 
-### Example 3: log files
+### Example 4: Log files
 
 ```js
 <placeholder>
 ```
 
-## Methods
+## Tests
 
-## How to install
+To run the test suite, first install any dependencies and then run `npm test`:
 
 ```bash
-npm install utilityFileSystem
+npm install
+npm test
 ```
 
 ## Things to note
