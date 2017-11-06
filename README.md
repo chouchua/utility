@@ -1,40 +1,86 @@
 # File utility for node programs
+
 Utility functions for file system, debugging, logging your Node.js application.
 
-## Test:
-`npm test` to try out functionality.
+[![npm version][npm-image]][npm-url]
+[![npm downloads][downloads-image]][npm-url]
 
-## Usage:
-Require the module for an instance of utilityFileSystem
-Example 1: write content to file
+## Installation
+
+First ensure that you have Node.js installed and then run the following:
+
+```bash
+npm install utilityFileSystem
+```
+
+## Usage
+
+Require the module for an instance of `utilityFileSystem`
+
+### Example 1: Write some content to a file
+
 ```js
 var utility = require('./utilityFileSystem');
+
 //create few files...
-utility.export('./test.txt','content...');
-utility.readFile("./test.txt");
-```
-output:
-```js
-Created file: ./test.txt
-Reading file contents from test/test1.txt
+utility.export('./sample.txt','content...');
 ```
 
-Example 2: read folder
+Output:
+
+```bash
+Created file: ./sample.txt
+```
+
+### Example 2: Read the contents of a file
+
 ```js
+var utility = require('./utilityFileSystem');
+
+utility.readFile("./sample.txt");
+```
+
+Output:
+
+```bash
+Reading file contents from ./sample.txt
+```
+
+### Example 3: Read the contents of a folder
+
+```js
+var utility = require('./utilityFileSystem');
+
 utility.readFolder("./package.json");
-utility.readFolder("./test");
+utility.readFolder("./sample");
 ```
-output:
-```JS
+
+Output:
+
+```js
 ./package.json Target exists, but it is not a folder...use utility.readFile() instead.
-./test Folder exists and its contents are: test.txt,test1.txt,test2.txt,test3.txt,test4.txt
+./sample Folder exists and its contents are: test.txt,test1.txt,test2.txt,test3.txt,test4.txt
 ```
 
-Example 3: log files
-## Methods:
+### Example 4: Log files
 
-## How to install:
-npm install utilityFileSystem
+```js
+<placeholder>
+```
+
+## Tests
+
+To run the test suite, first install any dependencies and then run `npm test`:
+
+```bash
+npm install
+npm test
+```
 
 ## Things to note
+
 The logging capability is aware of the process running. For example, if there is an existing logging file, any new instance of fileUtility will append to the existing.
+
+[npm-url]: https://www.npmjs.com/package/utilityFileSystem
+[npm-image]: https://img.shields.io/npm/v/utilityFileSystem.svg
+[downloads-image]: https://img.shields.io/npm/dt/utilityFileSystem.svg
