@@ -91,6 +91,10 @@ npm test
 
 The logging capability is aware of the process running. For example, if there is an existing logging file, any new instance of fileUtility will append to the existing.
 
+## License
+
+[MIT](LICENSE)
+
 [npm-url]: https://www.npmjs.com/package/utilityFileSystem
 [npm-image]: https://img.shields.io/npm/v/utilityFileSystem.svg
 [downloads-image]: https://img.shields.io/npm/dt/utilityFileSystem.svg

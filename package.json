@@ -15,7 +15,10 @@
     "url": "git+https://github.com/chouchua/utility.git"
   },
   "author": "Jimmy Chou <chuankengchou@gmail.com>",
-  "license": "ISC",
+  "contributors": [
+    "Taha Saifuddin <tahashabbir27@gmail.com>"
+  ],
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/chouchua/utility/issues"
   },
