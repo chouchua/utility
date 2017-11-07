@@ -1,4 +1,5 @@
 var utility = require('./index');
+utility.debug("ah");
 utility.logger('loggggg');
 //create few files...
 utility.export('./test.txt', 'content...');
@@ -16,9 +17,9 @@ var fs = require('fs');
 var path = require('path');
 var result = null;
 
-res = utility.createFolder('./testfolder/testfolder');
-if(res) {
-    utility.logger(res);
+result = utility.createFolder('./testfolder/testfolder');
+if(result) {
+    utility.logger(result);
 }
 
 result = utility.createFolder('./testfolder');

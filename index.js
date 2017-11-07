@@ -21,7 +21,7 @@ function utils() {
         //true if you want to append to target file.
         if(opt) {
             try {
-                fs.appendFileSync(path, content);
+                fs.appendFileSync(path, content + '\n');
                 console.log(`Created file: ${path}`);
             } catch(e) {
                 console.log(`unable to append to: ${path}`);
@@ -61,7 +61,7 @@ function utils() {
             console.log(content);
         }        
         if(process.env.logger) {//append to log file
-            this.export(logpath, content + "\n", true);
+            this.export(logpath, content, true);
         }
         else{
             this.export(location, content + "\n");
@@ -125,16 +125,16 @@ function utils() {
 
     /**
      * @param msg msg
-     * @param time optional
+     * @param time boolean
      */
     this.debug = function log(msg, time) {
         let logLineDetails = ((new Error().stack).split("at ")[3]).trim() + '\n   ';
         if(time){
-            console.log('DEBUG', new Date().toUTCString(), logLineDetails, msg);
+            console.warn('DEBUG', new Date().toUTCString(), logLineDetails, msg);
         }
         
         else{
-            console.log('DEBUG', logLineDetails, msg);
+            console.warn('DEBUG', logLineDetails, msg);
         }
     }
 
